@@ -23,9 +23,7 @@ class App extends Component {
 
   getMovies() {
     fetch(`https://ghibliapi.herokuapp.com/films/`)
-      // We get the API response and receive data in JSON format...
       .then(response => response.json())
-      // ...then we update the users state
       .then(data =>
         this.setState({
           movies: data,
@@ -59,7 +57,6 @@ class App extends Component {
 
   handleClick(movieId){
    const { movies } = this.state;
-  
    const movieInfo = movies.find(movie => movie.id ===  movieId );
 
    this.setState({
