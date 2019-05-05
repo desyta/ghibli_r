@@ -2,7 +2,7 @@
 	background-color: $white;
 	padding: 25px;
 	margin-top: 15%;
-	max-height: 220px;
+  height: 185px;
 	border-right: 3px solid $blue;
 
 	@include breakpoint(mobileonly) {
@@ -14,8 +14,8 @@
   }
 
   @include breakpoint(tablet-landscape ) {
-    max-width: 350px;
-    margin-top: 30%;
+    // max-width: 350px;
+    margin-top: 20%;
   }
 }
 
@@ -57,20 +57,17 @@ button {
 
 .no-suggestions {
   color: $grey;
+  margin-top: 40px;
   padding: 0.5rem;
-
-  @include breakpoint(mobileonly) {
-    position: absolute;
-    margin-top: 40px;
-  }
+  position: absolute;
 }
 
 .suggestions {
   border: 1px solid $grey;
   border-top-width: 0;
   list-style: none;
-  margin-top: 0;
-  max-height: 143px;
+  margin-top: 42px;
+  max-height: 185px;
   overflow-y: auto;
   padding-left: 0;
   width: calc(300px + 1rem);

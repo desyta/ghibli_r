@@ -95,8 +95,6 @@ class Search extends Component {
     const {  handleClicMovie } = this.props;
     let suggestionsListComponent;
 
-    console.log('handleClicMovie', handleClicMovie);
-
     if (showSuggestions && userInput) {
       if (filteredSuggestions.length) {
         suggestionsListComponent = (

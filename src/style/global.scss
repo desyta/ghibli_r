@@ -31,13 +31,14 @@ h1, h2, h3, h4, h5, h6 {
 	display: flex;
 	align-content: center;
 	justify-content: center;
+	flex-wrap: wrap;
+	flex-direction: column;
 
   @include breakpoint(tablet-landscape ) {
    	margin: 0 25px;
   }
 
   @include breakpoint(mobileonly) {
-    display: block;
-    margin: 0 15px;
+    margin: 0 20px;
   }
 }
