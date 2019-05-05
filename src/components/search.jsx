@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-class Autocomplete extends Component {
+class Search extends Component {
   static propTypes = {
-    suggestions: PropTypes.instanceOf(Array)
+    suggestions: PropTypes.instanceOf(Array),
+    handleClicMovie: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -14,13 +15,9 @@ class Autocomplete extends Component {
     super(props);
 
     this.state = {
-      // The active selection's index
       activeSuggestion: 0,
-      // The suggestions that match the user's input
       filteredSuggestions: [],
-      // Whether or not the suggestion list is shown
       showSuggestions: false,
-      // What the user has entered
       userInput: ''
     };
   }
@@ -30,10 +27,7 @@ class Autocomplete extends Component {
     const userInput = e.currentTarget.value;
 
     // Filter our suggestions that don't contain the user's input
-    const filteredSuggestions = suggestions.filter(
-      suggestion =>
-        suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-    );
+    const filteredSuggestions = suggestions.filter( suggestion => suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1 );
 
     this.setState({
       activeSuggestion: 0,
@@ -44,12 +38,16 @@ class Autocomplete extends Component {
   };
 
   onClick = e => {
+    const { handleClicMovie } = this.props;
+
     this.setState({
       activeSuggestion: 0,
       filteredSuggestions: [],
       showSuggestions: false,
-      userInput: e.currentTarget.innerText
+      userInput: e.currentTarget.innerText,
     });
+
+    handleClicMovie(e.currentTarget.innerText);
   };
 
   onKeyDown = e => {
@@ -91,10 +89,13 @@ class Autocomplete extends Component {
         filteredSuggestions,
         showSuggestions,
         userInput
-      }
+      },
     } = this;
 
+    const {  handleClicMovie } = this.props;
     let suggestionsListComponent;
+
+    console.log('handleClicMovie', handleClicMovie);
 
     if (showSuggestions && userInput) {
       if (filteredSuggestions.length) {
@@ -118,7 +119,7 @@ class Autocomplete extends Component {
         );
       } else {
         suggestionsListComponent = (
-          <div class='no-suggestions'>
+          <div className='no-suggestions'>
             <em>No suggestions, you're on your own!</em>
           </div>
         );
@@ -126,17 +127,24 @@ class Autocomplete extends Component {
     }
 
     return (
-      <Fragment>
+      <div className='search-form'>
+        <Fragment>
         <input
           type='text'
-          onChange={onChange}
-          onKeyDown={onKeyDown}
-          value={userInput}
+          onChange={ onChange }
+          onKeyDown={ onKeyDown }
+          value={ userInput }
+          placeholder={ 'Search your movie!' }
         />
         {suggestionsListComponent}
-      </Fragment>
+        <button 
+          disabled={ !userInput }
+          type='submit' 
+          onClick={ () => handleClicMovie(userInput) }>Search</button> 
+        </Fragment>
+      </div>
     );
   }
 }
 
-export default Autocomplete;
+export default Search;

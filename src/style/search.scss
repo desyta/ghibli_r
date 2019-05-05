@@ -1,0 +1,96 @@
+.search-container {
+	background-color: $white;
+	padding: 25px;
+	margin-top: 15%;
+	max-height: 220px;
+	border-right: 3px solid $blue;
+
+	@include breakpoint(mobileonly) {
+    margin: 40px 0 0;
+    border-right: 0;
+    border-bottom: 3px solid $blue;
+    padding: 15px;
+    height: 145px;
+  }
+
+  @include breakpoint(tablet-landscape ) {
+    max-width: 350px;
+    margin-top: 30%;
+  }
+}
+
+.search-title {
+	margin-top: 0;
+
+	@include breakpoint(mobileonly) {
+		font-size: 20px;
+	}
+}
+
+.search-form {
+  display: flex;
+}
+
+input {
+  border: 1px solid $grey;
+  padding: 0.5rem;
+  width: 300px;
+  color: $blue;
+}
+
+button {
+  background-color: $blue;
+  color: $white;
+  border: 1px solid $blue;
+  padding: 0.5rem;
+  width: 100px;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+  }
+
+  @include breakpoint(mobileonly) {
+    width: 80px;
+  }
+}
+
+.no-suggestions {
+  color: $grey;
+  padding: 0.5rem;
+
+  @include breakpoint(mobileonly) {
+    position: absolute;
+    margin-top: 40px;
+  }
+}
+
+.suggestions {
+  border: 1px solid $grey;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: calc(300px + 1rem);
+  position: absolute;
+
+  li {
+  	padding: 0.5rem;
+  	background-color: $white-fade; 
+  }
+}
+
+.suggestions
+.suggestion-active,
+.suggestions li:hover {
+  background-color: $blue;
+  color: $white;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.suggestions li:not(:last-of-type) {
+  border-bottom: 1px solid $grey;
+}

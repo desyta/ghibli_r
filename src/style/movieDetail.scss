@@ -1,0 +1,43 @@
+.filmDetail-wrapper {
+	background: $blue;
+	color: $white;
+	padding:  25px;	
+	max-width: 500px;
+	margin: 150px 0 0;
+	display: flex;
+	align-content: center;
+
+	@include breakpoint(tablet) {
+		margin-top: 50px;
+	}
+
+	@include breakpoint(tablet) {
+		margin-top: 50px;
+	}
+
+	@include breakpoint(mobileonly) {
+    margin: 0;
+  }
+}
+
+.filmDetail-information {
+	display: flex;
+	span {
+		font-weight: 100;
+	}
+}
+.filmDetail-title {
+	font-size: 48px;
+	font-weight: 300;
+	margin: 0;
+
+	@include breakpoint(mobileonly) {
+		font-size: 28px;
+	}
+}
+
+.filmDetail-notfound {
+	font-size: 32px;
+	font-weight: 300;
+	display: inline;
+}

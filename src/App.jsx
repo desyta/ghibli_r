@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+import './main.scss';
 import MovieDetail from './components/movieDetail';
-import Autocomplete from './components/autocomplete';
+import Search from './components/search';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       movies: [],
       isLoading: true,
@@ -41,11 +41,12 @@ class App extends Component {
 
     return (
       <div className='container'>
-        <div className='col-xs-12'>
-          <h1>Catalogo ghibli</h1>
-          <Autocomplete 
-            suggestions={ movieNames } />
-          <button type='submit' onClick={ () => this.handleClick('ea660b10-85c4-4ae3-8a5f-41cea3648e3e') }  />
+        <div className='search-container'>
+          <h1 className='search-title'>Studio Ghibli's Catalogue</h1>
+          <Search 
+            suggestions={ movieNames } 
+            handleClicMovie={ this.handleClick }
+          />
         </div>
         { isVisible && 
           <MovieDetail 
@@ -55,14 +56,14 @@ class App extends Component {
     );
   }
 
-  handleClick(movieId){
-   const { movies } = this.state;
-   const movieInfo = movies.find(movie => movie.id ===  movieId );
+  handleClick(movieTitle) {
+     const { movies } = this.state;
+     const movieInfo = movies.find(movie => movie.title ===  movieTitle );
 
-   this.setState({
-    isVisible: true, 
-    filmDetail: movieInfo,    
-   })
+     this.setState({
+      isVisible: true, 
+      filmDetail: movieInfo ? movieInfo : [],    
+     });
   }
 
 }
